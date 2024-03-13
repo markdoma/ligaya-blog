@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 class PublishedManager(models.Manager):
     def get_queryset(self):
@@ -45,7 +46,7 @@ class Post(models.Model):
                              self.publish.month,
                              self.publish.day,
                              self.slug])
-
+    tags = TaggableManager()
 
 class Comment(models.Model):
     post = models.ForeignKey(Post,
